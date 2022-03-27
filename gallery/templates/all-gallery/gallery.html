@@ -83,15 +83,7 @@
 
                         <button type="button" onclick="copyToClipboard();">Copy</button>
 
-                        <script>
-                            function copyToClipboard() {
-                                var copyText = document.getElementById("{{image.id}}-url");
-                                copyText.select();
-                                copyText.setSelectionRange(0, 99999)
-                                document.execCommand("copy");
-                                alert('url copied');
-                            }
-                        </script>
+                        
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
@@ -107,7 +99,7 @@
 
 </div>
 
-
+<footer class="footer">
     <p class="text-center">© kurgatfelo@2022. All Rights Reserved</p>
 </footer>
 
