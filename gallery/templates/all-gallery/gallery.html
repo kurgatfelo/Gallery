@@ -1,0 +1,114 @@
+{%extends 'all-gallery/base.html'%}
+{% load bootstrap3 %}
+{% load static%}
+
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Charm&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+{{block.super}}
+
+<style>
+    * {
+        font-family: 'Charm',
+            cursive;
+        font-size: 24px;
+    }
+    #introduction{
+        margin-top:-20px;
+        padding-top: 20px;
+        background-color:green;
+       
+    }
+    footer{
+        background-color: green;
+        padding:10px;
+    }
+</style>
+
+<div id="introduction" class='text-center'>
+
+    <h1 style="font-family: 'Cinzel Decorative', cursive;">Welcome To Felos GALLERY</h1>
+    <hr>
+    <p>Your favorite online photo GALLERY</p>
+    <hr>
+
+</div>
+
+<div class="container">
+
+    <!-- Images Section -->
+
+    <div class="images">
+
+        {% for image in images%}
+        <div class="col-lg-4">
+            <a href="#{{image.id}}" data-toggle="modal" data-target="#{{image.id}}">
+                <h5 class="text-center" style="font-size:25px; font-weight:600">{{image.image_name}}</h5>
+                <img src="{{image.image.url}}" class="img-responsive" alt="{{image.image_name}}"
+                    style="width:100%;width:100%">
+            </a>
+                                            <hr>
+            <div class="modal fade" id="{{image.id}}" role="dialog">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">{{image.image_name}}</h4>
+                            <img src="{{image.image.url}}" class="img-responsive" alt="Image"
+                                style="width:100%;max-width:100%">
+
+                        </div>
+
+                        <div class="modal-body">
+                            <p class="text-justify">{{image.image_details}}</p>
+                            <p class="text-left"><strong style="color: brown;">Location: </strong>
+                                {{image.location}}</p>
+                            <p class="text-left"><strong style="color: brown;">Category: </strong>
+                                {{image.category}}</p>
+                        </div>
+                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 padding-1">
+                            <input id="{{image.id}}-url" class="form-control input-md responsive" type="text"
+                                value="{{image.image.url}}">
+                        </div>
+
+                        <button type="button" onclick="copyToClipboard();">Copy</button>
+
+                        <script>
+                            function copyToClipboard() {
+                                var copyText = document.getElementById("{{image.id}}-url");
+                                copyText.select();
+                                copyText.setSelectionRange(0, 99999)
+                                document.execCommand("copy");
+                                alert('url copied');
+                            }
+                        </script>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        {%endfor%}
+
+    </div>
+
+</div>
+
+<footer class="footer">
+    <p class="text-center">© kurgatfelo@2022. All Rights Reserved</p>
+</footer>
+
+{% endblock %}

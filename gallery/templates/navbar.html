@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'home' %}">GALLERY</a>
+            </div>
+
+            <!-- search form for searching categories -->
+        <div class="col-sm-4 col-md-4 navbar-right">
+            <div class="navbar-form" role="search" action="/">
+                <form class="col-md-6" role="search" action="{% url 'search_category' %}">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="search images category" name="category">
+                        <div class="input-group-btn">
+                            <button class="btn btn-info" type="submit">Search</button>
+                        </div>
+                    </div>
+        
+                </form>
+            </div>
+        </div>
+
+        <!-- dropdown for search by location -->
+        <div class=" navbar-right">
+            <ul class="navbar-nav mr-auto" style="list-style: none">
+                <li class="dropdown">
+                    <a class="nav-link dropdown-toggle location navbar-brand" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-decoration: none;">
+                        Search Images Location
+                    </a>
+                    <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdown">
+                        {% for location in location %}
+                        <p style="margin-left:2%"><a class="dropdown-item"
+                                href="/location/{{location.location_name}}">{{location.location_name}}</a></p>
+                        {%endfor%}
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        </div>
+    </nav>
+
+</body>
+
+</html>
