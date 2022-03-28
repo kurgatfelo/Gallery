@@ -3,7 +3,7 @@ from .models import Category, Location, Image
 
 class CategoryTestClass(TestCase):
     def setUp(self):
-        self.category = Category(category_name='Wildlife')
+        self.category = Category(category_name='mountains')
         self.category.save_category()
 
     def test_instance(self):
@@ -21,7 +21,7 @@ class CategoryTestClass(TestCase):
 
 class LocationTestClass(TestCase):
     def setUp(self):
-        self.location = Location(location_name='Masai Mara')
+        self.location = Location(location_name='Nairobi')
         self.location.save_location()
 
     def test_instance(self):
@@ -41,13 +41,13 @@ class ImageTestClass(TestCase):
     
     def setUp(self):
 
-        self.location = Location(location_name='Masai Mara')
+        self.location = Location(location_name='Nairobi')
         self.location.save_location()
 
-        self.category = Category(category_name='Wildlife')
+        self.category = Category(category_name='mountains')
         self.category.save_category()
 
-        self.mara= Image(id=1,image_name = 'Elephants', image_details ='Testing images class model',location=self.location,category=self.category)
+        self.mara= Image(id=1,image_name = 'Lions', image_details ='Testing images class model',location=self.location,category=self.category)
 
     def test_instance(self):
         self.assertTrue(isinstance(self.mara,Image))
